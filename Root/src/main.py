@@ -34,3 +34,14 @@ def start_script():
     running = True
     window["start"].update(visible=False)
     window["stop"].update(visible=True)
+
+if __name__ == '__main__':
+    try:
+        p1 = multiprocessing.Process(target=gui)
+        p1.start()
+        p1.join()
+        running = False
+        while running:
+            prevent_idle()
+    except ImportError:
+        sg.popup("The PySimpleGUI or pyautogui module is not installed.")
