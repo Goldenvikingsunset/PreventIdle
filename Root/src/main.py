@@ -16,3 +16,12 @@ def prevent_idle():
         current_time = time.time()
         running_time = current_time - start_time
         window["time"].update(f"Running for {running_time} seconds")
+
+def stop_script():
+    """
+    Function that stops the script
+    """
+    window["start"].update(visible=True)
+    window["stop"].update(visible=False)
+    global running
+    running = False
