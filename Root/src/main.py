@@ -25,3 +25,12 @@ def stop_script():
     window["stop"].update(visible=False)
     global running
     running = False
+
+def start_script():
+    """
+    Function that starts the script
+    """
+    global running
+    running = True
+    window["start"].update(visible=False)
+    window["stop"].update(visible=True)
