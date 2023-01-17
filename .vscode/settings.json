@@ -5,5 +5,8 @@
         "pyautogui",
         "volumedown",
         "volumeup"
-    ]
+    ],
+    "CodeGPT.maxTokens": 1500,
+    "CodeGPT.query.language": "English",
+    "CodeGPT.temperature": 0.2
 }
