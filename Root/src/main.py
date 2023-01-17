@@ -3,45 +3,43 @@ import pyautogui
 import PySimpleGUI as sg
 import multiprocessing
 
-def prevent_idle():
-    """
-    Function that simulates activity by moving the mouse cursor
-    """
-    start_time = time.time()
+
+def KeepUI():
+
+    sg.theme('DarkAmber')
+    layout = [
+        [sg.Text('Make-Em-Think-You-Are-Working is now running.\nYou can keep it minimised, and it will continue running.\nClose it to disable it.', font=("Helvetica", 15), text_color='#FFD700')],
+        [sg.Button('Start', key='Start'), sg.Button('Stop', key='Stop', disabled=True)]
+    ]
+
+    window = sg.Window('Make-Em-Think-You-Are-Working', layout, alpha_channel=1,
+                       element_justification='c', background_color='#2F4F4F')
+
     while True:
-        pyautogui.moveRel(1, 1, duration=0.1)
+        event, values = window.read()
+        if event == 'Start':
+            p2 = multiprocessing.Process(target=dontsleep)
+            p2.start()
+            window['Start'].update(disabled=True)
+            window['Stop'].update(disabled=False)
+        elif event == 'Stop':
+            p2.terminate()
+            window['Start'].update(disabled=False)
+            window['Stop'].update(disabled=True)
+        elif event == sg.WIN_CLOSED:  # if user closes window or clicks cancel
+            if p2.is_alive():
+                p2.terminate()
+            break
+
+
+def dontsleep():
+    while True:
+        pyautogui.press('volumedown')
         time.sleep(2)
-        pyautogui.moveRel(-1, -1, duration=0.1)
+        pyautogui.press('volumeup')
         time.sleep(500)
-        current_time = time.time()
-        running_time = current_time - start_time
-        window["time"].update(f"Running for {running_time} seconds")
 
-def stop_script():
-    """
-    Function that stops the script
-    """
-    window["start"].update(visible=True)
-    window["stop"].update(visible=False)
-    global running
-    running = False
-
-def start_script():
-    """
-    Function that starts the script
-    """
-    global running
-    running = True
-    window["start"].update(visible=False)
-    window["stop"].update(visible=True)
 
 if __name__ == '__main__':
-    try:
-        p1 = multiprocessing.Process(target=gui)
-        p1.start()
-        p1.join()
-        running = False
-        while running:
-            prevent_idle()
-    except ImportError:
-        sg.popup("The PySimpleGUI or pyautogui module is not installed.")
+    p1 = multiprocessing.Process(target=KeepUI)
+    p1.start()
