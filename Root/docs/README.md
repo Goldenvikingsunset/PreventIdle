@@ -1,18 +1,26 @@
 Typing Test
-A typing test application using the PyQt5 library.
+This is a simple typing test application built using PyQt5. It allows users to select a pre-defined text or enter a custom text and measures their typing speed and accuracy.
 
 Features
-Select from 3 pre-defined test strings or enter a custom text.
-Start and stop the test.
-Calculate total time taken, speed, accuracy, words per minute and score.
-Leaderboard list widget to store the scores.
-Instructions
-Select the text you want to use for the test from the combo box.
-Click the 'Start' button to start the test.
-Type the text as quickly and accurately as you can.
-Click the 'Stop' button to stop the test.
-Enter your name to add your score to the leaderboard.
-Notes
-The test will automatically stop after 60 seconds.
-The score is calculated based on speed, accuracy and words per minute.
-The leaderboard stores the highest scores.
+Select a pre-defined text or enter a custom text
+Displays the selected text for the user to type
+Start and stop the test
+Displays the elapsed time in seconds
+Calculates the user's typing speed and accuracy
+Leaderboard to view the previous scores
+How to use
+Clone or download the repository
+Install PyQt5
+Run the script
+Select a pre-defined text or enter a custom text
+Click the start button to begin the test
+Type the text as fast and accurately as possible
+Click the stop button to end the test
+The results will be displayed on the console
+Requirements
+PyQt5
+Note
+The test lasts for 60 seconds
+The leaderboard is not saved after the application is closed.
+Contributions
+Feel free to fork the repository and submit a pull request for any new features or improvements.
