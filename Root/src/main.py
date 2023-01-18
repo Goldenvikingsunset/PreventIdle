@@ -9,7 +9,7 @@ class TypingTest(QDialog):
 
         # create a combo box to select the test string
         self.text_combo_box = QComboBox()
-        self.text_combo_box.addItems(["Text 1", "Text 2", "Text 3", "Custom Text"])
+        self.text_combo_box.addItems(["Text 1", "Text 2", "Custom Text"])
         self.text_combo_box.activated.connect(self.select_text)
 
         # create a label to display the test string
